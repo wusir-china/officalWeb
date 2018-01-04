@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hw.dao.NewsDao">
+
+	<resultMap type="com.hw.bean.News" id="NewsResult">
+		<result property="id" column="uid" jdbcType="INTEGER"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="dates" column="dates" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<select id="findOne" parameterType="java.lang.Integer" resultMap="NewsResult">
+		select * from t_news where uid=#{id} 
+	</select>
+	<!-- resultType -->
+	<select id="findAll"  resultMap="NewsResult">
+		select * from t_news 		
+	</select>  
+	
+	<select id="find8"  resultMap="NewsResult">
+		select * from t_news order by uid desc limit 0,8	
+	</select> 
+	<select id="findCondition" parameterType="String" resultMap="NewsResult">
+		select * from t_news where content LIKE concat(concat('%',#{content}),'%')
+					
+	</select> 
+	<insert id="add" parameterType="com.hw.bean.News">
+		insert into t_news(content, dates)
+		values (#{content},#{dates})
+	</insert>
+	
+	<update id="update" parameterType="com.hw.bean.News">
+		update t_news set content=#{content}, 
+		dates=#{dates} where uid=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from t_news where uid=#{id}
+	</delete>
+</mapper> 

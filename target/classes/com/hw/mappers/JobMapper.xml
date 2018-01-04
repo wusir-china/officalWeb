@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hw.dao.JobDao">
+
+	<resultMap type="com.hw.bean.Job" id="JobResult">
+		<result property="id" column="uid" jdbcType="INTEGER"/>
+		<result property="jobName" column="jobName" jdbcType="VARCHAR"/>
+		<result property="duty" column="duty" jdbcType="VARCHAR"/>
+		<result property="senior" column="senior" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<select id="findOne" parameterType="java.lang.Integer" resultMap="JobResult">
+		select * from t_job where uid=#{id} 
+	</select>
+	<!-- resultType -->
+	<select id="findAll"  resultMap="JobResult">
+		select * from t_job 
+		
+	</select>  
+	<select id="findCondition" parameterType="String" resultMap="JobResult">
+		select * from t_job where jobName LIKE concat(concat('%',#{jobName}),'%')
+					
+	</select> 
+	<insert id="add" parameterType="com.hw.bean.Job">
+		insert into t_job(jobName,duty,senior)
+		values (#{jobName},#{duty},#{senior})
+	</insert>
+	
+	<update id="update" parameterType="com.hw.bean.Job">
+		update t_job set jobName=#{jobName}, duty=#{duty},
+		senior=#{senior} where uid=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from t_job where uid=#{id}
+	</delete>
+</mapper> 

@@ -1,0 +1,15 @@
+com\hw\controller\JobController.class
+com\hw\service\JobService.class
+com\hw\dao\JobDao.class
+com\hw\dao\UserDao.class
+com\hw\service\impl\JobServiceImpl.class
+com\hw\service\NewsService.class
+com\hw\service\impl\UserServiceImpl.class
+com\hw\bean\News.class
+com\hw\dao\NewsDao.class
+com\hw\bean\User.class
+com\hw\controller\NewsController.class
+com\hw\bean\Job.class
+com\hw\service\UserService.class
+com\hw\service\impl\NewsServiceImpl.class
+com\hw\controller\UserController.class
